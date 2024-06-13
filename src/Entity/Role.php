@@ -13,27 +13,15 @@ class Role
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idRole = null;
-
     #[ORM\Column(length: 255)]
     private ?string $nameRole = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idRole')]
+    private ?RoleUser $roleUser = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdRole(): ?int
-    {
-        return $this->idRole;
-    }
-
-    public function setIdRole(int $idRole): static
-    {
-        $this->idRole = $idRole;
-
-        return $this;
     }
 
     public function getNameRole(): ?string
@@ -44,6 +32,18 @@ class Role
     public function setNameRole(string $nameRole): static
     {
         $this->nameRole = $nameRole;
+
+        return $this;
+    }
+
+    public function getRoleUser(): ?RoleUser
+    {
+        return $this->roleUser;
+    }
+
+    public function setRoleUser(?RoleUser $roleUser): static
+    {
+        $this->roleUser = $roleUser;
 
         return $this;
     }

@@ -14,10 +14,13 @@ class Activity
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nameActivity = null;
+    private ?string $NameActivity = null;
 
     #[ORM\Column]
     private ?int $priceActivity = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idActivity')]
+    private ?Booking $booking = null;
 
     public function getId(): ?int
     {
@@ -26,19 +29,12 @@ class Activity
 
     public function getNameActivity(): ?string
     {
-        return $this->nameActivity;
+        return $this->NameActivity;
     }
 
-    public function setNameActivity(string $nameActivity): static
+    public function setNameActivity(string $NameActivity): static
     {
-        $this->nameActivity = $nameActivity;
-
-        return $this;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
+        $this->NameActivity = $NameActivity;
 
         return $this;
     }
@@ -51,6 +47,18 @@ class Activity
     public function setPriceActivity(int $priceActivity): static
     {
         $this->priceActivity = $priceActivity;
+
+        return $this;
+    }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(?Booking $booking): static
+    {
+        $this->booking = $booking;
 
         return $this;
     }

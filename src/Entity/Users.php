@@ -13,9 +13,6 @@ class Users
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idUsers = null;
-
     #[ORM\Column(length: 255)]
     private ?string $firstName = null;
 
@@ -23,32 +20,26 @@ class Users
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adress = null;
+    private ?string $address = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $email = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $phone = null;
+    private ?string $mail = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $phone = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idUsers')]
+    private ?RoleUser $roleUser = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idUsers')]
+    private ?Booking $booking = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdUsers(): ?int
-    {
-        return $this->idUsers;
-    }
-
-    public function setIdUsers(int $idUsers): static
-    {
-        $this->idUsers = $idUsers;
-
-        return $this;
     }
 
     public function getFirstName(): ?string
@@ -75,26 +66,38 @@ class Users
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(string $adress): static
+    public function setAddress(string $address): static
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getMail(): ?string
     {
-        return $this->email;
+        return $this->mail;
     }
 
-    public function setEmail(string $email): static
+    public function setMail(string $mail): static
     {
-        $this->email = $email;
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
 
         return $this;
     }
@@ -111,14 +114,26 @@ class Users
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getRoleUser(): ?RoleUser
     {
-        return $this->password;
+        return $this->roleUser;
     }
 
-    public function setPassword(string $password): static
+    public function setRoleUser(?RoleUser $roleUser): static
     {
-        $this->password = $password;
+        $this->roleUser = $roleUser;
+
+        return $this;
+    }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(?Booking $booking): static
+    {
+        $this->booking = $booking;
 
         return $this;
     }
