@@ -14,13 +14,17 @@ class Activity
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $NameActivity = null;
+    private ?string $nameActivity = null;
 
     #[ORM\Column]
     private ?int $priceActivity = null;
 
-    #[ORM\ManyToOne(inversedBy: 'idActivity')]
-    private ?Booking $booking = null;
+    #[ORM\Column(length: 255)]
+    private ?string $addressActivity = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?destination $destination = null;
 
     public function getId(): ?int
     {
@@ -29,12 +33,12 @@ class Activity
 
     public function getNameActivity(): ?string
     {
-        return $this->NameActivity;
+        return $this->nameActivity;
     }
 
-    public function setNameActivity(string $NameActivity): static
+    public function setNameActivity(string $nameActivity): static
     {
-        $this->NameActivity = $NameActivity;
+        $this->nameActivity = $nameActivity;
 
         return $this;
     }
@@ -51,14 +55,26 @@ class Activity
         return $this;
     }
 
-    public function getBooking(): ?Booking
+    public function getAddressActivity(): ?string
     {
-        return $this->booking;
+        return $this->addressActivity;
     }
 
-    public function setBooking(?Booking $booking): static
+    public function setAddressActivity(string $addressActivity): static
     {
-        $this->booking = $booking;
+        $this->addressActivity = $addressActivity;
+
+        return $this;
+    }
+
+    public function getDestination(): ?destination
+    {
+        return $this->destination;
+    }
+
+    public function setDestination(?destination $destination): static
+    {
+        $this->destination = $destination;
 
         return $this;
     }

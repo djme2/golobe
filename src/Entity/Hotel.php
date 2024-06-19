@@ -14,30 +14,31 @@ class Hotel
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $addressHotel = null;
+    private ?string $nameHotel = null;
 
     #[ORM\Column]
     private ?int $priceHotel = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nameHotel = null;
+    private ?string $addressHotel = null;
 
-    #[ORM\ManyToOne(inversedBy: 'idHotel')]
-    private ?Booking $booking = null;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?destination $destination = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAddressHotel(): ?string
+    public function getNameHotel(): ?string
     {
-        return $this->addressHotel;
+        return $this->nameHotel;
     }
 
-    public function setAddressHotel(string $addressHotel): static
+    public function setNameHotel(string $nameHotel): static
     {
-        $this->addressHotel = $addressHotel;
+        $this->nameHotel = $nameHotel;
 
         return $this;
     }
@@ -54,26 +55,26 @@ class Hotel
         return $this;
     }
 
-    public function getNameHotel(): ?string
+    public function getAddressHotel(): ?string
     {
-        return $this->nameHotel;
+        return $this->addressHotel;
     }
 
-    public function setNameHotel(string $nameHotel): static
+    public function setAddressHotel(string $addressHotel): static
     {
-        $this->nameHotel = $nameHotel;
+        $this->addressHotel = $addressHotel;
 
         return $this;
     }
 
-    public function getBooking(): ?Booking
+    public function getDestination(): ?destination
     {
-        return $this->booking;
+        return $this->destination;
     }
 
-    public function setBooking(?Booking $booking): static
+    public function setDestination(?destination $destination): static
     {
-        $this->booking = $booking;
+        $this->destination = $destination;
 
         return $this;
     }

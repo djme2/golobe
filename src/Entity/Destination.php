@@ -19,8 +19,9 @@ class Destination
     #[ORM\Column]
     private ?int $priceDestination = null;
 
-    #[ORM\ManyToOne(inversedBy: 'idDestination')]
-    private ?Booking $booking = null;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?booking $booking = null;
 
     public function getId(): ?int
     {
@@ -51,12 +52,12 @@ class Destination
         return $this;
     }
 
-    public function getBooking(): ?Booking
+    public function getBooking(): ?booking
     {
         return $this->booking;
     }
 
-    public function setBooking(?Booking $booking): static
+    public function setBooking(?booking $booking): static
     {
         $this->booking = $booking;
 

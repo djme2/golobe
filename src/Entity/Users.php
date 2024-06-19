@@ -29,13 +29,7 @@ class Users
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $phone = null;
-
-    #[ORM\ManyToOne(inversedBy: 'idUsers')]
-    private ?RoleUser $roleUser = null;
-
-    #[ORM\ManyToOne(inversedBy: 'idUsers')]
-    private ?Booking $booking = null;
+    private ?string $role = null;
 
     public function getId(): ?int
     {
@@ -102,38 +96,14 @@ class Users
         return $this;
     }
 
-    public function getPhone(): ?string
+    public function getRole(): ?string
     {
-        return $this->phone;
+        return $this->role;
     }
 
-    public function setPhone(string $phone): static
+    public function setRole(string $role): static
     {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function getRoleUser(): ?RoleUser
-    {
-        return $this->roleUser;
-    }
-
-    public function setRoleUser(?RoleUser $roleUser): static
-    {
-        $this->roleUser = $roleUser;
-
-        return $this;
-    }
-
-    public function getBooking(): ?Booking
-    {
-        return $this->booking;
-    }
-
-    public function setBooking(?Booking $booking): static
-    {
-        $this->booking = $booking;
+        $this->role = $role;
 
         return $this;
     }
